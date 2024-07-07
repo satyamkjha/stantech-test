@@ -1,26 +1,54 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { useContext } from 'react';
+import styled from 'styled-components';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
-}
+import Summary from './components/Summary';
+import AddTransaction from './components/AddTransaction';
+import CategoryBreakdown from './components/CategoryBreakdown';
+import TransactionList from './components/TransactionList';
+import { TransactionContext } from './context/TransactionContext';
+
+const AppContainer = styled.div`
+	padding: 20px;
+	max-width: 800px;
+	margin: 0 auto;
+`;
+
+const App: React.FC = () => {
+	const context = useContext(TransactionContext);
+
+	if (!context) {
+		throw new Error(
+			'TransactionContext must be used within a TransactionProvider'
+		);
+	}
+
+	const { transactions, loading, error } = context;
+
+	// Calculate income, expenses, and category data with proper types
+	const income = transactions
+		.filter((t) => t.type === 'income')
+		.reduce((acc, t) => acc + t.amount, 0);
+	const expenses = transactions
+		.filter((t) => t.type === 'expense')
+		.reduce((acc, t) => acc + t.amount, 0);
+
+	const categoryData = transactions
+		.filter((t) => t.type === 'expense')
+		.reduce((acc, t) => {
+			acc[t.category] = (acc[t.category] || 0) + t.amount;
+			return acc;
+		}, {} as Record<string, number>);
+
+	return (
+		<AppContainer>
+			<h1>Personal Finance Tracker</h1>
+			<AddTransaction />
+			{loading ? <p>Loading...</p> : <TransactionList />}
+			{error && <p>{error.message}</p>}
+			<Summary income={income} expenses={expenses} />
+			<CategoryBreakdown data={categoryData} />
+		</AppContainer>
+	);
+};
 
 export default App;
