@@ -31,7 +31,7 @@ export const TransactionProvider: React.FC<TransactionProviderProps> = ({
 	const [error, setError] = useState<Error | null>(null);
 
 	useEffect(() => {
-		fetch('http://localhost:5001/transactions')
+		fetch('/api/transactions')
 			.then((response) => response.json())
 			.then((data) => {
 				setTransactions(data);
@@ -44,7 +44,7 @@ export const TransactionProvider: React.FC<TransactionProviderProps> = ({
 	}, []);
 
 	const addTransaction = (transaction: Omit<Transaction, 'id'>) => {
-		fetch('http://localhost:5001/transactions', {
+		fetch('/api/transactions', {
 			method: 'POST',
 			headers: {
 				'Content-Type': 'application/json',

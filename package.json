@@ -11,6 +11,7 @@
     "@types/react": "^18.3.3",
     "@types/react-dom": "^18.3.0",
     "chart.js": "^4.4.3",
+    "netlify-lambda": "^2.0.16",
     "react": "^18.3.1",
     "react-chartjs-2": "^5.2.0",
     "react-dom": "^18.3.1",
@@ -24,7 +25,9 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "server": "json-server --watch db.json --port 5001"
+    "server": "json-server --watch db.json --port 5001",
+    "build:lambda": "netlify-lambda build src/lambda",
+    "start:lambda": "netlify-lambda serve src/lambda"
   },
   "eslintConfig": {
     "extends": [
