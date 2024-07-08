@@ -1,6 +1,6 @@
 import React, { useContext } from 'react';
 import styled from 'styled-components';
-
+import './App.css';
 import Summary from './components/Summary';
 import AddTransaction from './components/AddTransaction';
 import CategoryBreakdown from './components/CategoryBreakdown';
@@ -42,11 +42,13 @@ const App: React.FC = () => {
 	return (
 		<AppContainer>
 			<h1>Personal Finance Tracker</h1>
+			<div className='row'>
+				<Summary income={income} expenses={expenses} />
+				<CategoryBreakdown data={categoryData} />
+			</div>
 			<AddTransaction />
 			{loading ? <p>Loading...</p> : <TransactionList />}
 			{error && <p>{error.message}</p>}
-			<Summary income={income} expenses={expenses} />
-			<CategoryBreakdown data={categoryData} />
 		</AppContainer>
 	);
 };

@@ -1,38 +1,174 @@
-.App {
-  text-align: center;
+/* src/styles.css */
+
+/* Define colors */
+:root {
+  --primary-color: #ffffff; /* white */
+  --secondary-color: #02bfbf; /* secondary color */
+  --background-color: #001f1f; /* dark background */
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+/* Base styles */
+body {
+  font-family: Arial, sans-serif;
+  background-color: var(--background-color);
+  color: var(--primary-color);
+  margin: 0;
+  padding: 0;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.container {
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  padding: 20px;
 }
 
-.App-link {
-  color: #61dafb;
+.row {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  width: 100%;
+  align-items: flex-start; /* Align items to the top */
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
+.summary, .category-breakdown {
+  flex: 1;
+  min-width: 300px;
+  margin: 10px;
+  padding: 20px;
+  border: 1px solid var(--primary-color);
+  border-radius: 15px;
+  background-color: none;
+  color: var(--primary-color);
+  height: max-content;
+}
+
+.add-transaction, .transaction-list {
+  width: 100%;
+  margin: 10px 0;
+}
+
+.add-transaction {
+  border: 1px solid var(--primary-color);
+  border-radius: 15px;
+  box-sizing: border-box;
+  padding: 25px;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+}
+
+.form-row {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  margin: 5px;
+  margin-bottom: 15px;
+}
+
+.form-group label {
+  margin-bottom: 10px;
+}
+
+.summary {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.summary-item {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  padding: 10px;
+  border-bottom: 1px solid var(--primary-color);
+}
+
+@media (max-width: 768px) {
+  .form-row {
+    flex-direction: column;
   }
-  to {
-    transform: rotate(360deg);
+
+  .form-group {
+    width: 100%;
   }
+
+  .summary-item {
+    flex-direction: column;
+    align-items: center;
+  }
+}
+
+ul {
+  list-style: none;
+  padding: 0;
+}
+
+li {
+  display: flex;
+  justify-content: space-between;
+  padding: 10px;
+  border: 1px solid var(--primary-color);
+  border-radius: 5px;
+  margin-bottom: 10px;
+}
+
+li span {
+  text-align: left;
+  width: 25%;
+}
+
+/* Input and Select styles */
+input[type="text"],
+input[type="number"],
+input[type="date"], /* Added for date input */
+select {
+  padding: 10px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  margin-bottom: 10px;
+  width: 100%;
+  box-sizing: border-box;
+  transition: border-color 0.3s ease; /* Smooth transition for border color */
+}
+
+/* Apply secondary color to focus state */
+input[type="text"]:focus,
+input[type="number"]:focus,
+input[type="date"]:focus,
+select:focus {
+  outline: none;
+  border-color: var(--secondary-color); /* Secondary color on focus */
+}
+
+/* Button styles */
+button {
+  background-color: var(--secondary-color); /* Secondary color */
+  color: var(--primary-color); /* White text */
+  border: none;
+  padding: 12px 20px; /* Larger padding for bigger buttons */
+  cursor: pointer;
+  border-radius: 4px;
+  font-size: 16px;
+}
+
+button:hover {
+  background-color: #007a7a; /* Darken secondary color on hover */
+}
+
+.income {
+  color: green;
+}
+
+.expense {
+  color: red;
 }

@@ -8,6 +8,8 @@ interface Transaction {
 	date: string;
 }
 
+const baseURL = 'http://localhost:5100';
+
 interface TransactionContextType {
 	transactions: Transaction[];
 	addTransaction: (transaction: Omit<Transaction, 'id'>) => void;
@@ -31,7 +33,7 @@ export const TransactionProvider: React.FC<TransactionProviderProps> = ({
 	const [error, setError] = useState<Error | null>(null);
 
 	useEffect(() => {
-		fetch('/api/transactions')
+		fetch(`${baseURL}/transactions`)
 			.then((response) => response.json())
 			.then((data) => {
 				setTransactions(data);
@@ -44,7 +46,7 @@ export const TransactionProvider: React.FC<TransactionProviderProps> = ({
 	}, []);
 
 	const addTransaction = (transaction: Omit<Transaction, 'id'>) => {
-		fetch('/api/transactions', {
+		fetch(`${baseURL}/transactions`, {
 			method: 'POST',
 			headers: {
 				'Content-Type': 'application/json',

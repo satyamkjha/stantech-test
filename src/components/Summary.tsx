@@ -16,20 +16,18 @@ const Summary: React.FC<SummaryProps> = ({ income, expenses }) => {
 	const balance = income - expenses;
 
 	return (
-		<SummaryContainer>
-			<div>
-				<h2>Income</h2>
-				<p>${income}</p>
+		<div className='summary'>
+			<h3>Summary</h3>
+			<div className='summary-item'>
+				<span>Income:</span> <span>Rs {income.toFixed(2)}</span>
 			</div>
-			<div>
-				<h2>Expenses</h2>
-				<p>${expenses}</p>
+			<div className='summary-item'>
+				<span>Expenses:</span> <span>Rs {expenses.toFixed(2)}</span>
 			</div>
-			<div>
-				<h2>Balance</h2>
-				<p>${balance}</p>
+			<div className='summary-item'>
+				<span>Balance:</span> <span>Rs {balance.toFixed(2)}</span>
 			</div>
-		</SummaryContainer>
+		</div>
 	);
 };
 

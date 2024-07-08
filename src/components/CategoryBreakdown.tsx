@@ -43,10 +43,10 @@ const CategoryBreakdown: React.FC<CategoryBreakdownProps> = ({ data }) => {
 	};
 
 	return (
-		<BreakdownContainer>
+		<div className='category-breakdown'>
 			<h2>Category Breakdown</h2>
 			<Pie data={chartData} />
-		</BreakdownContainer>
+		</div>
 	);
 };
 
