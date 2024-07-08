@@ -17,10 +17,12 @@ const TransactionList: React.FC = () => {
 		<ul>
 			{transactions.map((transaction) => (
 				<li key={transaction.id}>
-					<span>{transaction.date}</span>
-					<span>{transaction.category}</span>
-					<span>{transaction.amount}</span>
-					<span>{transaction.type}</span>
+					<span className='date'>{transaction.date}</span>
+					<span className='category'>{transaction.category}</span>
+					<span className={`amount ${transaction.type}`}>
+						{transaction.amount}
+					</span>
+					<span className={`type ${transaction.type}`}>{transaction.type}</span>
 				</li>
 			))}
 		</ul>
